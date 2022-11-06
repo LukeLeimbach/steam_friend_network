@@ -1,0 +1,416 @@
+{
+    "nodes": [
+      {
+        "name": "Frank7?",
+        "level": 12,
+        "index": 0
+      },
+      {
+        "name": "duk",
+        "level": 101,
+        "index": 1
+      },
+      {
+        "name": "Sylus",
+        "level": 69,
+        "index": 2
+      },
+      {
+        "name": "Zealot",
+        "level": 69,
+        "index": 3
+      },
+      {
+        "name": "Dank7?",
+        "level": 56,
+        "index": 4
+      },
+      {
+        "name": "Jerico7?",
+        "level": 53,
+        "index": 5
+      },
+      {
+        "name": "Noij7?",
+        "level": 42,
+        "index": 6
+      },
+      {
+        "name": "eccs",
+        "level": 235,
+        "index": 7
+      },
+      {
+        "name": "Vel",
+        "level": 201,
+        "index": 8
+      },
+      {
+        "name": "Xtradite",
+        "level": 111,
+        "index": 9
+      },
+      {
+        "name": "Pal",
+        "level": 103,
+        "index": 10
+      },
+      {
+        "name": "IXtremezl",
+        "level": 102,
+        "index": 11
+      },
+      {
+        "name": "Trenbolone induced schizophrenia",
+        "level": 100,
+        "index": 12
+      },
+      {
+        "name": "THEHELLOHOUND456",
+        "level": 118,
+        "index": 13
+      },
+      {
+        "name": "WHITESHIRT tm",
+        "level": 112,
+        "index": 14
+      },
+      {
+        "name": "Ar",
+        "level": 91,
+        "index": 15
+      },
+      {
+        "name": "tallyup",
+        "level": 90,
+        "index": 16
+      },
+      {
+        "name": "Muffinpuncher",
+        "level": 86,
+        "index": 17
+      },
+      {
+        "name": "l@z@rus",
+        "level": 85,
+        "index": 18
+      },
+      {
+        "name": "Jordanlol",
+        "level": 87,
+        "index": 19
+      },
+      {
+        "name": "ball bearing made of flesh",
+        "level": 85,
+        "index": 20
+      },
+      {
+        "name": "Arsenova Dragonov",
+        "level": 79,
+        "index": 21
+      },
+      {
+        "name": "koniG_-",
+        "level": 74,
+        "index": 22
+      },
+      {
+        "name": "Slippery g00ch",
+        "level": 70,
+        "index": 23
+      },
+      {
+        "name": "Max",
+        "level": 66,
+        "index": 24
+      },
+      {
+        "name": "JustALoneGinger",
+        "level": 101,
+        "index": 25
+      },
+      {
+        "name": "Anthony",
+        "level": 90,
+        "index": 26
+      },
+      {
+        "name": "| Lenny |",
+        "level": 85,
+        "index": 27
+      },
+      {
+        "name": "Jergundi",
+        "level": 69,
+        "index": 28
+      },
+      {
+        "name": "Crabcoon",
+        "level": 68,
+        "index": 29
+      },
+      {
+        "name": "Gregor",
+        "level": 67,
+        "index": 30
+      },
+      {
+        "name": "Lukethedemon",
+        "level": 124,
+        "index": 31
+      },
+      {
+        "name": "Professor Backwater",
+        "level": 55,
+        "index": 32
+      },
+      {
+        "name": "adankpancake",
+        "level": 49,
+        "index": 33
+      },
+      {
+        "name": "Sanah",
+        "level": 44,
+        "index": 34
+      },
+      {
+        "name": "Puffin7?",
+        "level": 23,
+        "index": 35
+      },
+      {
+        "name": "bbravery",
+        "level": 34,
+        "index": 36
+      },
+      {
+        "name": "PAYR1S",
+        "level": 23,
+        "index": 37
+      },
+      {
+        "name": "Nudes4beer7?",
+        "level": 22,
+        "index": 38
+      },
+      {
+        "name": "Tyler7?",
+        "level": 22,
+        "index": 39
+      },
+      {
+        "name": "Garrin7?",
+        "level": 22,
+        "index": 40
+      }
+    ],
+    "links": [
+      {
+        "source": 1,
+        "target": 0,
+        "value": 1
+      },
+      {
+        "source": 2,
+        "target": 0,
+        "value": 8
+      },
+      {
+        "source": 3,
+        "target": 0,
+        "value": 10
+      },
+      {
+        "source": 4,
+        "target": 0,
+        "value": 6
+      },
+      {
+        "source": 5,
+        "target": 0,
+        "value": 1
+      },
+      {
+        "source": 6,
+        "target": 0,
+        "value": 1
+      },
+      {
+        "source": 7,
+        "target": 1,
+        "value": 1
+      },
+      {
+        "source": 8,
+        "target": 1,
+        "value": 1
+      },
+      {
+        "source": 9,
+        "target": 1,
+        "value": 1
+      },
+      {
+        "source": 10,
+        "target": 1,
+        "value": 1
+      },
+      {
+        "source": 11,
+        "target": 1,
+        "value": 1
+      },
+      {
+        "source": 12,
+        "target": 1,
+        "value": 1
+      },
+      {
+        "source": 13,
+        "target": 2,
+        "value": 1
+      },
+      {
+        "source": 14,
+        "target": 2,
+        "value": 100
+      },
+      {
+        "source": 15,
+        "target": 2,
+        "value": 1
+      },
+      {
+        "source": 16,
+        "target": 2,
+        "value": 1
+      },
+      {
+        "source": 17,
+        "target": 2,
+        "value": 1
+      },
+      {
+        "source": 18,
+        "target": 2,
+        "value": 1
+      },
+      {
+        "source": 19,
+        "target": 3,
+        "value": 1
+      },
+      {
+        "source": 20,
+        "target": 3,
+        "value": 1
+      },
+      {
+        "source": 21,
+        "target": 3,
+        "value": 1
+      },
+      {
+        "source": 22,
+        "target": 3,
+        "value": 1
+      },
+      {
+        "source": 23,
+        "target": 3,
+        "value": 1
+      },
+      {
+        "source": 24,
+        "target": 3,
+        "value": 1
+      },
+      {
+        "source": 25,
+        "target": 4,
+        "value": 1
+      },
+      {
+        "source": 26,
+        "target": 4,
+        "value": 1
+      },
+      {
+        "source": 27,
+        "target": 4,
+        "value": 1
+      },
+      {
+        "source": 28,
+        "target": 4,
+        "value": 1
+      },
+      {
+        "source": 29,
+        "target": 4,
+        "value": 1
+      },
+      {
+        "source": 30,
+        "target": 4,
+        "value": 1
+      },
+      {
+        "source": 6,
+        "target": 5,
+        "value": 1
+      },
+      {
+        "source": 31,
+        "target": 5,
+        "value": 1
+      },
+      {
+        "source": 32,
+        "target": 5,
+        "value": 1
+      },
+      {
+        "source": 33,
+        "target": 5,
+        "value": 1
+      },
+      {
+        "source": 34,
+        "target": 5,
+        "value": 1
+      },
+      {
+        "source": 35,
+        "target": 5,
+        "value": 1
+      },
+      {
+        "source": 37,
+        "target": 6,
+        "value": 1
+      },
+      {
+        "source": 38,
+        "target": 6,
+        "value": 1
+      },
+      {
+        "source": 39,
+        "target": 6,
+        "value": 1
+      },
+      {
+        "source": 40,
+        "target": 6,
+        "value": 1
+      },
+      {
+        "source": 36,
+        "target": 6,
+        "value": 1
+      }
+    ]
+  }
