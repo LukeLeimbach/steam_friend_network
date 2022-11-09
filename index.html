@@ -5,24 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Network</title>
 
+    <!-- Vega Library -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
 
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
 
     <style>
-        div {
+        .container {
             background-color: #575757;
             color: #e4e0e0;
-        }
-
-        .container {
             border-radius: 10px;
             display: flex;
             justify-content: center;
-            width: fit-content;
+            align-items: center;
             height: fit-content;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            flex-wrap: wrap;
+        }
+        
+        .textbox {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+        .textbox > p,h1 {
+            margin-left: 10%;
+            margin-right: 10%;
+            background-color: #c9c9c9;
+            border-radius: 10px;
+            padding: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
         }
 
         input {
@@ -43,19 +63,49 @@
         .vega-bind-name {
             padding-right: 4px;
         }
-        
-        .test { /* Testing for classes on form */
-            color: aqua;
+
+        #vg-tooltip-element.vg-tooltip.custom-theme {
+            border: 0;
+            background-color: white;
+            color: #575757;
+            font-size: .8em;
+            padding: 4px;
         }
     </style>
 </head>
 <body>
-    <h1>Hypothesis: On Steam, I am only two friends from an account that is level 1000 or greater.</h1>
-    <div class="container">
-        <div id="vis"></div>
+    <div class="textbox">
+        <h1>Hypothesis: On Steam, I am only two friends from an account that is level 1000 or greater.</h1>
     </div>
     
+    <div class="container">
+        <div id="vis"></div>
+        <div id="vis2"></div>
+    </div>
+    <div class="textbox">
+        <h2 style="text-align: center">About the Data</h2>
+        <p>
+            The data in this network comes from Frank7?'s Steam profile (my profile). In order to have a legible network, only the friends with the top 6 levels were selected
+            for this dataset. A Steam level is gained by getting crafting Badges. Badges are made of trading cards which can be purchased from the Steam Store for
+            around 5 cents, or can be earned by playing games on Steam.
+        </p>
+        <hr>
+    </div>
+    <div class="textbox" style="margin-top: 0px;">
+        <h2 style="text-align: center">Conclusion</h2>
+        <p>
+            Based on this limited data set, the hypothesis that I am one friend away from a level 1000 account has been proven false.
+            Due to time constraints, the network is not complete because the data had to be made by hand. I have over 150 friends on Steam for context.
+        </p>
+        <hr>
+    </div>
+
+    
     <script>
+        var tooltipOptions = {
+            theme: "custom"
+        }
+
         var network = {
             "$schema": "https://vega.github.io/schema/vega/v5.json",
             "description": "A node-link diagram with force-directed layout, depicting character co-occurrence in the novel Les Misérables.",
@@ -71,9 +121,9 @@
                 "bind": {"input": "range", "min": 1, "max": 15, "step": 1, "name": "Node Radius", "class": "test"} },
                 { "name": "nodeCharge", "value": -30,
                 "bind": {"input": "range", "min":-100, "max": 10, "step": 1, "name": "Node Charge"} },
-                { "name": "linkDistance", "value": 30,
+                { "name": "linkDistance", "value": 80,
                 "bind": {"input": "range", "min": 5, "max": 100, "step": 1, "name": "Link Distance"} },
-                { "name": "static", "value": true,
+                { "name": "static", "value": false,
                 "bind": {"input": "checkbox", "name": "Static"} },
                 {
                 "description": "State variable for active node fix status.",
@@ -113,24 +163,14 @@
                     "update": "fix && fix.length"
                     }
                 ]
-                },
-                // {
-                // "description": "Display Name and Level on Mouseover.",
-                // "name": "info", "value": "Me",
-                // "on": [
-                //     {
-                //     "events": "symbol:mouseover",
-                //     "update": "nodes:name"
-                //     }
-                // ]
-                // }
+                }
             ],
 
             "data": [
                 {
                 "name": "node-data",
                 "url": "data.json",
-                "format": {"type": "json", "property": "nodes"}
+                "format": {"type": "json", "property": "nodes", "parse": "auto"}
                 },
                 {
                 "name": "link-data",
@@ -142,9 +182,21 @@
             "scales": [
                 {
                 "name": "color",
-                "type": "ordinal",
+                "nice": true,
+                "zero": true,
+                "type": "quantize",
                 "domain": {"data": "node-data", "field": "level"},
-                "range": {"scheme": "plasma"}
+                "range": {"scheme": "darkmulti", "count": 6},
+                "domain": [0, 300]
+                }
+            ],
+
+            "legends": [
+                {
+                    "fill": "color",
+                    "orient": "bottom-left",
+                    "title": "Steam Level",
+                    "type": "gradient",
                 }
             ],
 
@@ -153,12 +205,12 @@
                 "name": "nodes",
                 "type": "symbol",
                 "zindex": 1,
-
                 "from": {"data": "node-data"},
                 "on": [
                     {
                     "trigger": "fix",
                     "modify": "node",
+                    "tooltip": "true",
                     "values": "fix === true ? {fx: node.x, fy: node.y} : {fx: fix[0], fy: fix[1]}"
                     },
                     {
@@ -170,7 +222,11 @@
                 "encode": {
                     "enter": {
                     "fill": {"scale": "color", "field": "level"},
-                    "stroke": {"value": "#575757"}
+                    "stroke": {"value": "#575757"},
+                    "tooltip": [
+                        {"field": "name", "type": "nominal", "title": "Name"},
+                        // {"field": "level", "type": "quantitative"}
+                    ]
                     },
                     "update": {
                     "size": {"signal": "2 * nodeRadius * nodeRadius"},
@@ -216,7 +272,125 @@
                 }
             ]
             };
-        vegaEmbed("#vis", network)
+        vegaEmbed("#vis", network, {tooltip: tooltipOptions})
+    </script>
+
+    <script>
+        var tooltipOptions = {
+            theme: "custom"
+        }
+
+        var histogram = {
+            "$schema": "https://vega.github.io/schema/vega/v5.json",
+            "description": "A basic bar chart example, with value labels shown upon mouse hover.",
+            "width": 600,
+            "height": 400,
+            "padding": 5,
+            "title": {"text": "Number of Steam Users in the Network at Different Level Ranges", "color": "#d6d6d6", "fontSize": 20},
+
+            "data": [
+                {
+                "name": "table",
+                "values": [
+                    {"category": "0-50", "amount": 10},
+                    {"category": "51-100", "amount": 21},
+                    {"category": "101-150", "amount": 8},
+                    {"category": "151-200", "amount": 0},
+                    {"category": "201-250", "amount": 1},
+                    {"category": "251-300", "amount": 1}
+                ]
+                }
+            ],
+
+            "signals": [
+                {
+                "name": "tooltip",
+                "value": {},
+                "on": [
+                    {"events": "rect:mouseover", "update": "datum"},
+                    {"events": "rect:mouseout",  "update": "{}"}
+                ]
+                }
+            ],
+
+            "scales": [
+                {
+                "name": "xscale",
+                "type": "band",
+                "domain": {"data": "table", "field": "category"},
+                "range": "width",
+                "padding": 0.1,
+                "round": true
+                },
+                {
+                "name": "yscale",
+                "domain": {"data": "table", "field": "amount"},
+                "nice": true,
+                "range": "height"
+                },
+                {
+                "name": "colors",
+                "type": "ordinal",
+                "domain": {"data": "table", "field": "category"},
+                "range": {"scheme": "darkmulti"}
+                }
+            ],
+
+            "axes": [
+                { "orient": "bottom", "scale": "xscale", "title": "Level" },
+                { "orient": "left", "scale": "yscale", "title": "Users" },
+            ],
+
+            "config": {
+                "axis": {
+                    "labelFontSize": 15,
+                    "titleFontSize": 20,
+                    "titleColor": "#d6d6d6",
+                    "domainColor": "#d6d6d6",
+                    "labelColor": "#d6d6d6",
+                    "tickColor": "#d6d6d6",
+                    "tickSize": 5,
+                }
+            },  
+
+            "marks": [
+                {
+                "type": "rect",
+                "from": {"data":"table"},
+                "encode": {
+                    "enter": {
+                    "x": {"scale": "xscale", "field": "category", "title": "test"},
+                    "width": {"scale": "xscale", "band": 1},
+                    "y": {"scale": "yscale", "field": "amount"},
+                    "y2": {"scale": "yscale", "value": 0}
+                    },
+                    "update": {"fill": {"scale": "colors", "field": "category"}},
+                    "hover": {"fill": {"value": "steelblue"}}
+                }
+                },
+                {
+                "type": "text",
+                "encode": {
+                    "enter": {
+                    "align": {"value": "center"},
+                    "baseline": {"value": "bottom"},
+                    "fill": {"value": "#d6d6d6"}
+                    },
+                    "update": {
+                    "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+                    "y": {"scale": "yscale", "signal": "tooltip.amount", "offset": -4},
+                    "text": {"signal": "tooltip.amount"},
+                    "fillOpacity": [
+                        {"test": "datum === tooltip", "value": 0},
+                        {"value": 1}
+                    ]
+                    }
+                }
+                }
+            ]
+        }
+
+        vegaEmbed("#vis2", histogram, {tooltip: tooltipOptions})
     </script>
 </body>
 </html>
